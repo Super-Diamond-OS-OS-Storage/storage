@@ -1,0 +1,23 @@
+<script>
+    window.addEventListener("message", function (e) {
+        if (e.origin !== "http://alexidians.github.io") {
+            return
+        }
+         
+        const request = JSON.parse(e.data)
+switch(request.type) {
+  case "get_name":
+    return localStorage.key(request.id);
+  case "get_value":
+    return localStorage.getItem(request.name);
+  case "get_amount":
+    return localStorage.length;
+    case "set_os":
+    localStorage.setItem(request.name, request.url)
+    break;
+  default:
+    console.error("Invalid Request Type")
+}
+        
+    })
+</script>
